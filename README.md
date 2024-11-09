@@ -53,7 +53,7 @@ The following table indicates the results of the quantification of the noise pat
 
 The following overall observations can be made from the above table
 
-**Gaussian Noise**: Most images likely have low levels of Gaussian noise, as the variance is generally below the threshold for strong artifacts.
+**Gaussian Noise**: Most images have low levels of Gaussian noise, as the variance is generally below the threshold for strong artifacts.
 
 **Salt-and-Pepper Noise**: The ratio of salt-and-pepper noise is generally low, indicating minimal random pixel corruption.
 
