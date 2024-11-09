@@ -1,0 +1,79 @@
+addpath('D:\MATLAB\IMAGE SETS');
+% List of image filenames
+ImageNames = {'aerial1.tiff'; 'aerial2.tiff'; 'aerial3.tiff'; 'aerial4.tiff'; 'aerial5.tiff'; 'aerial6.tiff'; 'aerial7.tiff'; 'aerial8.tiff'; ...
+              'baby.png'; 'bird.png'; 'woman.png'; 'zebra.png'; 'kodim03.png'; 'kodim10.png'; 'kodim15.png'; 'airplane.png'; ...
+              'arctichare.png'; 'girl.png'; 'lena.png'; 'monarch.png'; 'peppers1.tiff'; 'peppers2.png'; 'tulips.png'};
+
+% Initialize a cell array to store the results
+ResultsTable = cell(length(ImageNames)+1, 5); % 5 columns: ImageName, Gaussian Noise, Salt-and-Pepper, Blur Metric, JPEG Artifact Metric
+ResultsTable{1, 1} = 'Image Name';
+ResultsTable{1, 2} = 'Gaussian Noise (Variance)';
+ResultsTable{1, 3} = 'Salt-and-Pepper Noise Ratio';
+ResultsTable{1, 4} = 'Blur Metric';
+ResultsTable{1, 5} = 'JPEG Artifact Metric';
+
+% Loop through all images
+for k = 1:length(ImageNames)
+    % Load the image
+    img_path = fullfile('D:\MATLAB\IMAGE SETS', ImageNames{k});
+    img = imread(img_path);
+    img = im2double(rgb2gray(img)); % Convert to grayscale and normalize
+
+    %% 1. Gaussian Noise Analysis
+    % Select a flat, dark region for Gaussian noise analysis
+    region = img(1:50, 1:50); % Use top-left corner (adjust as needed)
+    mean_intensity = mean(region(:));
+    variance_intensity = var(region(:));
+    
+    %% 2. Salt-and-Pepper Noise Detection
+    % Define threshold for salt-and-pepper noise detection
+    sp_threshold = 0.05; % Threshold for black (0) and white (1) pixels
+    num_salt = sum(img(:) > 1 - sp_threshold);
+    num_pepper = sum(img(:) < sp_threshold);
+    sp_ratio = (num_salt + num_pepper) / (numel(img));
+    
+    %% 3. Blur Detection
+    % Blur detection using Laplacian filter
+    laplacian_filter = fspecial('laplacian', 0.2);
+    img_laplacian = imfilter(img, laplacian_filter, 'replicate');
+    blur_metric = mean2(abs(img_laplacian));
+    
+    %% 4. JPEG Compression Artifacts Detection
+    % JPEG artifacts detection by analyzing block variance
+    block_size = 8;
+    block_variance = zeros(floor(size(img,1)/block_size), floor(size(img,2)/block_size));
+    
+    for i = 1:block_size:size(img,1)-block_size+1
+        for j = 1:block_size:size(img,2)-block_size+1
+            block = img(i:i+block_size-1, j:j+block_size-1);
+            block_variance(floor(i/block_size)+1, floor(j/block_size)+1) = var(block(:));
+        end
+    end
+    
+    jpeg_artifact_metric = mean(block_variance(:));
+    
+    %% Store the results in the cell array
+    ResultsTable{k+1, 1} = string(ImageNames{k});  % Store image name as a string
+    ResultsTable{k+1, 2} = variance_intensity;   % Gaussian noise variance (numeric value)
+    ResultsTable{k+1, 3} = sp_ratio;             % Salt-and-pepper noise ratio (numeric value)
+    ResultsTable{k+1, 4} = blur_metric;          % Blur metric (numeric value)
+    ResultsTable{k+1, 5} = jpeg_artifact_metric; % JPEG artifact metric (numeric value)
+
+    %% Display results for each image
+    % Display Laplacian Image (blur analysis)
+    figure, imshow(abs(img_laplacian), []), title(['Laplacian Image (Blur) - ', ImageNames{k}]);
+    
+    % Display Block Variance Map (JPEG artifact analysis)
+    figure, imagesc(block_variance), colorbar, title(['Block Variance Map (JPEG) - ', ImageNames{k}]);
+end
+% Convert ResultsTable to a table for display
+% Convert the cell array to a table
+ResultsTable = cell2table(ResultsTable(2:end, :), 'VariableNames', ResultsTable(1, :));
+
+% Display results in the Command Window
+disp(ResultsTable);
+
+% Optionally, display the results in a MATLAB UI table
+f = uifigure('Position', [100, 100, 800, 400]); % Use uifigure instead of figure
+t = uitable(f, 'Data', ResultsTable{:,:}, 'ColumnName', ResultsTable.Properties.VariableNames, 'Position', [20 20 760 350]);
+
