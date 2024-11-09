@@ -1,0 +1,26 @@
+This repository provides a MATLAB implementation for analyzing real-world low-light images and detecting common types of noise and artifacts that often occur in such images. These include:
+
+Gaussian noise: Often caused by sensor limitations, particularly in low-light conditions.
+Salt-and-pepper noise: Random pixel corruption caused by transmission errors.
+Blur: Caused by camera motion, poor focus, or low light.
+JPEG compression artifacts: Blocky patterns or distortion resulting from lossy image compression.
+The goal of this analysis is to quantify these distortions, enabling better understanding and potential mitigation of image degradation in low-light environments. This approach is useful in various fields, including medical imaging, astronomy, surveillance, and photography, where low-light conditions are common.
+
+Features:
+Gaussian Noise Detection: Detects Gaussian noise by calculating the variance of pixel intensities in a smooth region of the image.
+Salt-and-Pepper Noise Detection: Identifies salt-and-pepper noise by counting white (salt) and black (pepper) pixels.
+Blur Detection: Measures image sharpness using the Laplacian filter to detect blur caused by factors like camera shake or poor focus.
+JPEG Artifact Detection: Detects compression artifacts by analyzing block variance across the image.
+How It Works:
+Image Processing: The code processes each image by first converting it to grayscale and normalizing pixel values.
+Noise and Artifact Detection: It calculates specific metrics for each type of noise and artifact.
+Results Visualization: The results are displayed as numerical values in a table, and corresponding visualizations (such as the Laplacian map for blur and block variance map for JPEG artifacts) are shown.
+Output:
+For each image, the following metrics are computed:
+
+Gaussian Noise (Variance): A measure of Gaussian noise present in the image.
+Salt-and-Pepper Noise Ratio: A ratio indicating the severity of salt-and-pepper noise.
+Blur Metric: A value representing the sharpness of the image, with lower values indicating more blur.
+JPEG Artifact Metric: A value indicating the presence of JPEG compression artifacts.
+Requirements:
+MATLAB (R2021 or later recommended)
