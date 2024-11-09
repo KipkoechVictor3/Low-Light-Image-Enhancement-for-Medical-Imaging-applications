@@ -1,4 +1,5 @@
-[redraw the artifact qunatification table - redraw the artifact qunatification table.csv](https://github.com/user-attachments/files/17687071/redraw.the.artifact.qunatification.table.-.redraw.the.artifact.qunatification.table.csv)# Low-Light-Image-Enhancement-for-Medical-Imaging-applications
+# Low-Light-Image-Enhancement-for-Medical-Imaging-applications
+
 Objective:
 This research seeks to develop a robust deep learning model specifically designed to enhance low-light medical images. By focusing on medical imaging in low-resource settings or environments where optimal lighting is unavailable, this work aims to improve the diagnostic quality and usability of images in healthcare applications.
 
@@ -22,7 +23,13 @@ The goal of this analysis is to quantify these distortions, enabling better unde
 **Artifact Quantification**: 
 This is the process of measuring and evaluating the severity of distortions or imperfections (artifacts) in an image, which can result from various factors such as noise, blur, or compression. It involves calculating specific numerical metrics (e.g., variance, ratio, or block differences) to objectively assess the presence and strength of these artifacts. By quantifying artifacts, one can determine the level of image degradation and guide the application of appropriate correction techniques (like denoising, deblurring, or artifact removal) to improve image quality. They are given in the table below
 
-![image](https://github.com/user-attachments/assets/1defdf59-bea3-4f09-b4d4-1af97919464a)
+| **Artifact**                    | **Weak Artifact**                        | **Moderate Artifact**                           | **Strong Artifact**                           |
+|---------------------------------|------------------------------------------|-------------------------------------------------|------------------------------------------------|
+| **Gaussian Noise (Variance)**   | Variance < 0.01                          | 0.01 ≤ Variance ≤ 0.02                          | Variance > 0.02                               |
+| **Salt-and-Pepper Noise Ratio** | Ratio < 0.02                             | 0.02 ≤ Ratio < 0.05                             | Ratio ≥ 0.05                                  |
+| **Blur (Laplacian Variance)**   | Laplacian Variance > 0.05                | 0.02 ≤ Laplacian Variance ≤ 0.05                | Laplacian Variance < 0.02                     |
+| **JPEG Compression Artifacts**  | Block Variance ≤ 5                       | 5 < Block Variance ≤ 10                         | Block Variance > 10                           |
+
 
 The following table indicates the results of the quantification of the noise patterns for the 23 images used
 
