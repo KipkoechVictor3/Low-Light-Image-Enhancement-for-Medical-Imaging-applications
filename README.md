@@ -14,6 +14,9 @@ This involves analyzing real-world low-light images and detecting common types o
 The goal of this analysis is to quantify these distortions, enabling better understanding and potential mitigation of image degradation in low-light environments. This approach is useful in various fields, including medical imaging, astronomy, surveillance, and photography, where low-light conditions are common.
 
 **Artifact Quantification**: process of measuring and evaluating the severity of distortions or imperfections (artifacts) in an image, which can result from various factors such as noise, blur, or compression. It involves calculating specific numerical metrics (e.g., variance, ratio, or block differences) to objectively assess the presence and strength of these artifacts. By quantifying artifacts, one can determine the level of image degradation and guide the application of appropriate correction techniques (like denoising, deblurring, or artifact removal) to improve image quality. They are given in the table below
+
 ![image](https://github.com/user-attachments/assets/e5106de8-6550-431f-a208-f249bb728c5b)
+
 The following table indicates the results of the quantification of the noise patterns for the 23 images used
+
 ![image](https://github.com/user-attachments/assets/0ef952d3-1aca-4548-abab-ff0680f2a9d0)
