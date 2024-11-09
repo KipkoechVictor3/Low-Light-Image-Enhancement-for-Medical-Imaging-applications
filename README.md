@@ -44,8 +44,12 @@ The following table indicates the results of the quantification of the noise pat
     "778.png"            1.1674e-05                      0.74238                0.020624          0.00026988     
     "780.png"            0.00027525                      0.72166                0.019452           0.0006249     
 
-The following overall observations can be made from the above
+The following overall observations can be made from the above table
+
 **Gaussian Noise**: Most images likely have low levels of Gaussian noise, as the variance is generally below the threshold for strong artifacts.
+
 **Salt-and-Pepper Noise**: The ratio of salt-and-pepper noise is generally low, indicating minimal random pixel corruption.
+
 **Blur**: There is a mix of blur levels, with some images exhibiting moderate to strong blur. This could be due to various factors like camera focus, motion blur, or image processing techniques.
+
 **JPEG Compression Artifacts**: The block variance suggests that most images have low levels of JPEG compression artifacts, indicating that they have not been heavily compressed or compressed efficiently.
