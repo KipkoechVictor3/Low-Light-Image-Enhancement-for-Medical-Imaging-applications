@@ -19,4 +19,26 @@ The goal of this analysis is to quantify these distortions, enabling better unde
 
 The following table indicates the results of the quantification of the noise patterns for the 23 images used
 
-![image](https://github.com/user-attachments/assets/0ef952d3-1aca-4548-abab-ff0680f2a9d0)
+    Image Name    Gaussian Noise (Variance)    Salt-and-Pepper Noise Ratio    Blur Metric    JPEG Artifact Metric
+    __________    _________________________    ___________________________    ___________    ____________________
+
+    "o1.png"               0.003453                      0.49191                0.017314          0.00042016     
+    "22.png"             3.4681e-05                      0.37394                0.015022          0.00014864     
+    "23.png"             8.3507e-06                      0.57271                0.012593          6.2397e-05     
+    "55.png"             1.1188e-05                      0.62972                0.012244          8.2837e-05     
+    "79.png"             0.00025887                      0.21197                0.016845          0.00024972     
+    "146.png"            0.00042203                      0.25324                0.020662          0.00028344     
+    "179.png"            0.00076562                      0.17282                0.022222          0.00028045     
+    "493.png"            0.00011206                      0.81341               0.0092257          5.3556e-05     
+    "547.png"            2.4191e-05                      0.33869                0.016652          0.00013797     
+    "665.png"            7.6219e-05                      0.75875                0.015063          6.3197e-05     
+    "669.png"            0.00043671                      0.31625                0.016487          0.00017339     
+    "748.png"            5.4176e-05                      0.51404                0.020749          0.00064761     
+    "778.png"            1.1674e-05                      0.74238                0.020624          0.00026988     
+    "780.png"            0.00027525                      0.72166                0.019452           0.0006249     
+
+The following overall observations can be made from the above
+**Gaussian Noise**: Most images likely have low levels of Gaussian noise, as the variance is generally below the threshold for strong artifacts.
+**Salt-and-Pepper Noise**: The ratio of salt-and-pepper noise is generally low, indicating minimal random pixel corruption.
+**Blur**: There is a mix of blur levels, with some images exhibiting moderate to strong blur. This could be due to various factors like camera focus, motion blur, or image processing techniques.
+**JPEG Compression Artifacts**: The block variance suggests that most images have low levels of JPEG compression artifacts, indicating that they have not been heavily compressed or compressed efficiently.
