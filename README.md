@@ -15,7 +15,11 @@ The goal of this analysis is to quantify these distortions, enabling better unde
 
 **Artifact Quantification**: process of measuring and evaluating the severity of distortions or imperfections (artifacts) in an image, which can result from various factors such as noise, blur, or compression. It involves calculating specific numerical metrics (e.g., variance, ratio, or block differences) to objectively assess the presence and strength of these artifacts. By quantifying artifacts, one can determine the level of image degradation and guide the application of appropriate correction techniques (like denoising, deblurring, or artifact removal) to improve image quality. They are given in the table below
 
-![image](https://github.com/user-attachments/assets/e5106de8-6550-431f-a208-f249bb728c5b)
+**Artifact**                                      ** Weak Artifact**                  **Moderate Artifact**                    **Strong Artifact**
+_Gaussian Noise (Variance)	_                       Variance < 0.01	               0.01 ≤ Variance ≤ 0.02	                       Variance > 0.02
+_Salt-and-Pepper Noise (Ratio)_	                     Ratio < 0.02	                 0.02 ≤ Ratio < 0.05	                       Ratio ≥ 0.05
+_Blur (Laplacian Variance)_	                       Laplacian Variance > 0.05	   0.02 ≤ Laplacian Variance ≤ 0.05	               Laplacian Variance < 0.02
+_JPEG Compression Artifacts (Block Variance)_	      Block Variance ≤ 5	            5 < Block Variance ≤ 10	                   Block Variance > 10
 
 The following table indicates the results of the quantification of the noise patterns for the 23 images used
 
